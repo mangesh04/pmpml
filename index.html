@@ -9,6 +9,12 @@
 
     <title>Document</title>
     <style>
+        :root {
+            --ticket-width: 85vw;
+            --ticket-max-width: 350px;
+            --cut-size: 100px;
+        }
+
         * {
             user-select: none;
             /* Modern browsers */
@@ -37,7 +43,8 @@
             /* justify-content: center; */
             background-color: #f7d9d9;
             height: 100vh;
-
+            width: 100vw;
+            overflow: hidden;
         }
 
         nav {
@@ -75,9 +82,10 @@
             background-color: white;
             border-radius: 10px;
             height: 500px;
-            width: 350px;
+            max-width: var(--ticket-max-width);
+            width: var(--ticket-width);
             /* max-width: 300px; */
-            margin-top: 100px;
+            margin-top: 10vh;
             position: relative;
         }
 
@@ -90,7 +98,7 @@
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
             color: white;
-            font-size: x-large;
+            font-size: 20px;
         }
 
         #pass_details_div {
@@ -106,7 +114,7 @@
         #pass_time {
             display: flex;
             margin-top: 20px;
-            gap: 20px;
+            gap: 10px;
         }
 
         @keyframes upward_backward {
@@ -146,16 +154,6 @@
             animation: upward_backward 3s ease-in-out infinite;
         }
 
-        #dot_line {
-            margin: 0px;
-
-            width: 100%;
-            /* or any fixed width */
-            height: 1px;
-            background-image: repeating-linear-gradient(to right, black 8px, black 12px, transparent 10px, transparent 18px);
-            opacity: 0.2;
-
-        }
 
         .sub_headings {
             font-size: small;
@@ -164,35 +162,6 @@
             margin-bottom: 5px;
         }
 
-        #left_cut {
-            margin: 0px;
-            padding: 0px;
-            width: 30px;
-            height: 30px;
-            /* border: 1px solid black; */
-            border-radius: 100%;
-
-            background-color: #f7d9d9;
-            position: relative;
-            top: -390px;
-            left: 175px;
-        }
-
-
-
-        #right_cut {
-            margin: 0px;
-            padding: 0px;
-            width: 30px;
-            height: 30px;
-            /* border: 1px solid black; */
-            border-radius: 100%;
-
-            background-color: #f7d9d9;
-            position: relative;
-            top: -420px;
-            left: -175px;
-        }
 
         .bold_details {
             margin: 0px;
@@ -256,6 +225,66 @@
             top: 30px;
             right: 10px;
         }
+
+        #cuts {
+            /* height: 100px; */
+            /* border: 1px solid black; */
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            max-width: var(--ticket-max-width);
+            width: var(--ticket-width);
+        }
+
+        #left_cut {
+            margin: 0px;
+            padding: 0px;
+            width: 30px;
+            height: 30px;
+            /* border: 1px solid black; */
+            border-radius: 100%;
+
+            background-color: #f7d9d9;
+            position: absolute;
+            left: -15px;
+            /* top: -390px; */
+            /* left: 175px;  */
+        }
+
+
+
+        #right_cut {
+            margin: 0px;
+            padding: 0px;
+            width: 30px;
+            height: 30px;
+            /* border: 1px solid black; */
+            border-radius: 100%;
+
+            background-color: #f7d9d9;
+
+            position: absolute;
+            right: -15px;
+            /* top: -420px;
+            left: -175px; */
+        }
+
+        #dot_line {
+            margin: 0px;
+
+            max-width: var(--ticket-max-width);
+            width: var(--ticket-width);
+
+            height: 2px;
+            background-image: repeating-linear-gradient(to right, black 8px, black 12px, transparent 10px, transparent 18px);
+            opacity: 0.2;
+            position: relative;
+            left: 15px;
+            /* position: absolute;
+            top: 300px;
+            left: 100px; */
+
+        }
     </style>
 
 </head>
@@ -289,7 +318,15 @@
                     </div>
                 </div>
 
-                <div id="dot_line"></div>
+
+                <div id="cuts">
+                    <div id="left_cut"></div>
+                    <div id="dot_line"></div>
+                    <div id="right_cut"></div>
+                </div>
+
+
+
                 <div id="pass_time">
                     <div class="pass_details">
                         <p class="sub_headings">Booking Time</p>
@@ -310,18 +347,21 @@
 
             </div>
 
-            <div id="left_cut"></div>
-            <div id="right_cut"></div>
 
             <div id="qr_code_icon" onclick="show_qr()">
                 <img src="qr-code-icon.png" alt="">
                 Show QR Code
             </div>
+
+
+            <div id="qr_code">
+                <img src="qr-code.jpg" alt="">
+                <p onclick="hide_qr()">X</p>
+            </div>
+
         </div>
-    </div>
-    <div id="qr_code">
-        <img src="qr-code.jpg" alt="">
-        <p onclick="hide_qr()">X</p>
+
+
     </div>
 
     <script>
