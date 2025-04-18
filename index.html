@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Document</title>
+    <style>
+        * {
+            user-select: none;
+            /* Modern browsers */
+            -webkit-user-select: none;
+            /* Safari */
+            -ms-user-select: none;
+            /* IE/Edge */
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+
+            font-family: Helvetica;
+            /* height: 100vh; */
+        }
+
+        #mobile_screen {}
+
+
+        #background {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            /* justify-content: center; */
+            background-color: #f7d9d9;
+            height: 100vh;
+
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+
+            /* border: 1px solid black; */
+
+            margin: 10px;
+            height: 30px;
+            min-width: auto;
+            width: 100%;
+            /* font-size:small; */
+            font-style: bold;
+        }
+
+        nav p {
+            position: relative;
+            left: 30px;
+        }
+
+        nav #a1 {
+            position: absolute;
+            right: 120px;
+            color: black;
+        }
+
+        nav #a2 {
+            position: absolute;
+            right: 30px;
+            color: black;
+        }
+
+        #ticket {
+            background-color: white;
+            border-radius: 10px;
+            height: 500px;
+            width: 350px;
+            /* max-width: 300px; */
+            margin-top: 100px;
+            position: relative;
+        }
+
+        #heading {
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #E53935;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            color: white;
+            font-size: x-large;
+        }
+
+        #pass_details_div {
+            display: flex;
+            margin: 10px;
+        }
+
+        .pass_details {
+            /* border: 1px solid black; */
+            margin: 10px;
+        }
+
+        #pass_time {
+            display: flex;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        @keyframes upward_backward {
+            0% {
+                height: 170px;
+            }
+
+            50% {
+                height: 190px;
+            }
+
+            100% {
+
+                height: 170px;
+                /* transform: translateZ(100px); */
+            }
+        }
+
+        #logo {
+            /* border: 1px solid; */
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 50px;
+            /* animation: upward_backward 4s ease-in infinite; */
+        }
+
+        #logo img {
+            padding: 0px;
+            margin: 0px;
+            height: 100%;
+            position: absolute;
+            /* position: relative; */
+            /* height: 130px; */
+            animation: upward_backward 3s ease-in-out infinite;
+        }
+
+        #dot_line {
+            margin: 0px;
+
+            width: 100%;
+            /* or any fixed width */
+            height: 1px;
+            background-image: repeating-linear-gradient(to right, black 8px, black 12px, transparent 10px, transparent 18px);
+            opacity: 0.2;
+
+        }
+
+        .sub_headings {
+            font-size: small;
+            opacity: 0.5;
+            margin: 0px;
+            margin-bottom: 5px;
+        }
+
+        #left_cut {
+            margin: 0px;
+            padding: 0px;
+            width: 30px;
+            height: 30px;
+            /* border: 1px solid black; */
+            border-radius: 100%;
+
+            background-color: #f7d9d9;
+            position: relative;
+            top: -390px;
+            left: 175px;
+        }
+
+
+
+        #right_cut {
+            margin: 0px;
+            padding: 0px;
+            width: 30px;
+            height: 30px;
+            /* border: 1px solid black; */
+            border-radius: 100%;
+
+            background-color: #f7d9d9;
+            position: relative;
+            top: -420px;
+            left: -175px;
+        }
+
+        .bold_details {
+            margin: 0px;
+            font-weight: bolder;
+            font-size: 20px;
+        }
+
+        #code_number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+        }
+
+        .time_date {
+            font-size: small;
+            font-weight: bold;
+            margin: 0px;
+        }
+
+        #qr_code_icon {
+            position: absolute;
+            bottom: 10px;
+            border-radius: 10px;
+            padding: 10px;
+            width: 85vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #00a36c;
+            color: #00a36c;
+            background-color: #dFF7E7;
+            font-weight: bold;
+        }
+
+        #qr_code_icon img {
+            padding: 0px;
+            margin: 0px;
+            height: 25px;
+            position: relative;
+            margin-right: 10px;
+            /* height: 130px; */
+        }
+
+        #qr_code {
+            position: absolute;
+            top: 30%;
+            left: 10px;
+            height: 300px;
+            width: 300px;
+            display: none;
+        }
+
+        #qr_code img {
+            position: relative;
+            height: 100%;
+        }
+
+        #qr_code p {
+            position: absolute;
+            top: 30px;
+            right: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="mobile_screen">
+
+        <div id="background">
+
+            <nav>
+                <p onclick="fullScreen()">X</p>
+                <a id="a1" href="">Need Help?</a>
+                <a id="a2" href="">All passes</a>
+
+            </nav>
+            <div id="ticket">
+                <div id="heading">पुणे महानगर परिवहन महामंडळ लि.</div>
+                <div id="pass_details_div">
+                    <div class="pass_details">
+                        <p class="sub_headings">Pass Type</p>
+                        <p class="bold_details">PMC and PCMC</p>
+                    </div>
+
+                    <div class="pass_details">
+                        <p class="sub_headings">ID</p>
+                        <p class="bold_details">068M</p>
+                    </div>
+                    <div class="pass_details">
+                        <p class="sub_headings">Fare</p>
+                        <p class="bold_details">₹50</p>
+                    </div>
+                </div>
+
+                <div id="dot_line"></div>
+                <div id="pass_time">
+                    <div class="pass_details">
+                        <p class="sub_headings">Booking Time</p>
+                        <p class="time_date">16 Apr,25 | 05:22 AM</p>
+                    </div>
+                    <div class="pass_details">
+                        <p class="sub_headings">Validity Time</p>
+                        <p class="time_date">16 Apr,25 | 05:22 AM</p>
+                    </div>
+                </div>
+                <div id="code_number">
+                    <p>25040218558V3JNV</p>
+                </div>
+
+                <div id="logo">
+                    <img src="unnamed.png" alt="">
+                </div>
+
+            </div>
+
+            <div id="left_cut"></div>
+            <div id="right_cut"></div>
+
+            <div id="qr_code_icon" onclick="show_qr()">
+                <img src="qr-code-icon.png" alt="">
+                Show QR Code
+            </div>
+        </div>
+    </div>
+    <div id="qr_code">
+        <img src="qr-code.jpg" alt="">
+        <p onclick="hide_qr()">X</p>
+    </div>
+
+    <script>
+
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        const today = new Date();
+        const date = today.getDate();
+        const year = today.getFullYear();
+        const month = monthNames[today.getMonth()];
+
+        const booking_time_eles = document.getElementsByClassName('time_date')
+
+        booking_time_eles[0].innerHTML = `${date} ${month},${year} | 09:32 AM`;
+        booking_time_eles[1].textContent = `${date} ${month},${year} | 11:59 PM`;
+
+        const qr_code_ele = document.getElementById('qr_code');
+
+        function show_qr() {
+            qr_code_ele.style.display = 'block';
+        }
+        function hide_qr() {
+            qr_code_ele.style.display = 'none';
+        }
+
+        function fullScreen() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen(); // Safari
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen(); // IE11
+            }
+        }
+    </script>
+
+</body>
+
+</html>
