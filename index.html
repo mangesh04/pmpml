@@ -9,6 +9,7 @@
 
     <title>Document</title>
     <style>
+
         :root {
             --ticket-width: 85vw;
             --ticket-max-width: 350px;
@@ -374,10 +375,12 @@
         const year = today.getFullYear();
         const month = monthNames[today.getMonth()];
 
-        const booking_time_eles = document.getElementsByClassName('time_date')
+        const booking_time_eles = document.getElementsByClassName('time_date');
 
-        booking_time_eles[0].innerHTML = `${date} ${month},${year} | 09:32 AM`;
-        booking_time_eles[1].textContent = `${date} ${month},${year} | 11:59 PM`;
+        const id_ele = document.getElementsByClassName('bold_details')[1];
+
+        booking_time_eles[0].innerHTML = `${date} ${month}, ${year % 100} | 09:32 AM`;
+        booking_time_eles[1].textContent = `${date} ${month}, ${year % 100} | 11:59 PM`;
 
         const qr_code_ele = document.getElementById('qr_code');
 
@@ -397,6 +400,19 @@
             } else if (elem.msRequestFullscreen) {
                 elem.msRequestFullscreen(); // IE11
             }
+        }
+
+        const urlString = new URLSearchParams(window.location.search);
+        const ticket_id = urlString.get('id');
+        const ticket_time = urlString.get('time');
+
+        if (ticket_id !== null && ticket_id != '') {
+            id_ele.innerText = ticket_id;
+        }
+
+        if (ticket_time !== null && ticket_time != '') {
+            ticket_time.innerText =
+                booking_time_eles[0].innerHTML = `${date} ${month}, ${year % 100} | ${ticket_time} AM`;
         }
     </script>
 

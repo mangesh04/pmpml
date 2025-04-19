@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+
+            font-family: Helvetica;
+            /* height: 100vh; */
+        }
+
+        #background {
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            /* justify-content: center; */
+            background-color: #f7d9d9;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        #background form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            height: 100%;
+        }
+
+        #background form input {
+
+            border-radius: 20px;
+            padding: 10px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="mobile_screen">
+
+        <div id="background">
+
+            <form action="./index.html" method="get">
+                <input type="text" name="id" id="id" value="" placeholder="Id">
+                <input type="text" name="time" id="time" value="" placeholder="Time">
+                <input type="Submit" value="submit">
+            </form>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
