@@ -9,7 +9,6 @@
 
     <title>Document</title>
     <style>
-
         :root {
             --ticket-width: 85vw;
             --ticket-max-width: 350px;
@@ -88,6 +87,7 @@
             /* max-width: 300px; */
             margin-top: 10vh;
             position: relative;
+            overflow: hidden;
         }
 
         #heading {
@@ -120,16 +120,16 @@
 
         @keyframes upward_backward {
             0% {
-                height: 170px;
+                height: 140px;
             }
 
             50% {
-                height: 190px;
+                height: 180px;
             }
 
             100% {
 
-                height: 170px;
+                height: 140px;
                 /* transform: translateZ(100px); */
             }
         }
@@ -141,7 +141,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            margin: 50px;
+            margin: 55px;
             /* animation: upward_backward 4s ease-in infinite; */
         }
 
@@ -280,11 +280,27 @@
             background-image: repeating-linear-gradient(to right, black 8px, black 12px, transparent 10px, transparent 18px);
             opacity: 0.2;
             position: relative;
-            left: 15px;
+            /* left: 15px; */
             /* position: absolute;
             top: 300px;
             left: 100px; */
 
+        }
+
+        .red-stripe {
+            background-color: #E53935;
+            opacity: 0.9;
+            text-align: center;
+            color: white;
+        }
+
+        #timer {
+            background-color: rgb(238, 238, 238);
+            position: absolute;
+            bottom: 0px;
+            /* overflow: hidden; */
+            width: 100%;
+            text-align: center;
         }
     </style>
 
@@ -321,8 +337,8 @@
 
 
                 <div id="cuts">
-                    <div id="left_cut"></div>
                     <div id="dot_line"></div>
+                    <div id="left_cut"></div>
                     <div id="right_cut"></div>
                 </div>
 
@@ -342,12 +358,18 @@
                     <p>24030128258C3JNV</p>
                 </div>
 
+                <div id="cuts">
+                    <div id="dot_line"></div>
+                </div>
+                <div class="red-stripe">One Day Pass</div>
+
                 <div id="logo">
                     <img src="pmpml_logo.png" alt="">
                 </div>
-
+                <div id="timer">
+                    here
+                </div>
             </div>
-
 
             <div id="qr_code_icon" onclick="show_qr()">
                 <img src="qr-code-icon.png" alt="">
@@ -403,6 +425,7 @@
         }
 
         const urlString = new URLSearchParams(window.location.search);
+
         const ticket_id = urlString.get('id');
         const ticket_time = urlString.get('time');
 
@@ -414,6 +437,28 @@
             ticket_time.innerText =
                 booking_time_eles[0].innerHTML = `${date} ${month}, ${year % 100} | ${ticket_time} AM`;
         }
+        const timerEle = document.getElementById('timer');
+
+        function updateCountdown() {
+            const now = new Date();
+            const target = new Date();
+
+            // Set target to upcoming midnight (12:00:00 AM)
+            target.setHours(24, 0, 0, 0); // 24:00 is equivalent to 00:00 next day
+
+            const diff = target - now; // time left in ms
+
+            const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, '0');
+            const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
+            const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+
+            timerEle.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Initial call and then every 1 second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
     </script>
 
 </body>
