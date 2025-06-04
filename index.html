@@ -18,7 +18,7 @@
             --ticket-width: 85vw;
             --ticket-max-width: 350px;
             --cut-size: 100px;
-            --background-color: #dec016;
+            --background-color: #FFB300;
         }
 
         * {
@@ -87,11 +87,11 @@
         #ticket {
             background-color: white;
             border-radius: 10px;
-            height: 500px;
-            max-width: var(--ticket-max-width);
-            width: var(--ticket-width);
+            /* max-width: var(--ticket-max-width);
+            width: var(--ticket-width); */
             /* max-width: 300px; */
             margin-top: 10vh;
+            width: 90vw;
             position: relative;
             overflow: hidden;
         }
@@ -108,64 +108,7 @@
             font-size: 20px;
         }
 
-        #pass_details_div {
-            display: flex;
-            margin: 10px;
-        }
-
-        .pass_details {
-            /* border: 1px solid black; */
-            margin: 10px;
-            font-size: small;
-        }
-
-        #pass_time {
-
-            font-size: small;
-            display: flex;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-        @keyframes upward_backward {
-            0% {
-                height: 180px;
-            }
-
-            50% {
-                height: 100px;
-            }
-
-            100% {
-                height: 180px;
-                /* transform: translateZ(100px); */
-            }
-        }
-
-        #logo {
-            /* border: 1px solid; */
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin: 55px;
-            /* animation: upward_backward 4s ease-in infinite; */
-        }
-
-        #logo img {
-            padding: 0px;
-            margin: 0px;
-            height: 100%;
-            position: absolute;
-            /* position: relative; */
-            /* height: 130px; */
-            animation: upward_backward 2.5s ease-in-out infinite;
-        }
-
-
         .sub_headings {
-            font-size: small;
             opacity: 0.5;
             margin: 0px;
             margin-bottom: 5px;
@@ -178,12 +121,67 @@
             font-size: 20px;
         }
 
+        .pass_details_div {
+            display: flex;
+            margin: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pass_details {
+            /* border: 1px solid black; */
+            margin: 10px;
+        }
+
+        #pass_time {
+            font-size: smaller;
+            display: flex;
+            margin-inline: 10px;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        #pass_time .pass_details {
+            margin-bottom: 0px;
+        }
+
+        @keyframes upward_backward {
+            0% {
+                height: 200px;
+            }
+
+            50% {
+                height: 100px;
+            }
+
+            100% {
+                height: 200px;
+                /* transform: translateZ(100px); */
+            }
+        }
+
+        #logo {
+            /* border: 1px solid; */
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        #logo img {
+            padding: 0px;
+            margin: 0px;
+            animation: upward_backward 2.5s ease-in-out infinite;
+        }
+
+
+
+
         #code_number {
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0.6;
-            font-size: small;
         }
 
         .time_date {
@@ -236,17 +234,15 @@
             right: 10px;
         }
 
-        #cuts {
+        .dot_line_div {
             /* height: 100px; */
             /* border: 1px solid black; */
             display: flex;
             /* justify-content: center; */
             align-items: center;
-            max-width: var(--ticket-max-width);
-            width: var(--ticket-width);
         }
 
-        #left_cut {
+        .left_cut {
             margin: 0px;
             padding: 0px;
             width: 30px;
@@ -263,7 +259,7 @@
 
 
 
-        #right_cut {
+        .right_cut {
             margin: 0px;
             padding: 0px;
             width: 30px;
@@ -279,12 +275,10 @@
             left: -175px; */
         }
 
-        #dot_line {
+        .dot_line {
             margin: 0px;
 
-            max-width: var(--ticket-max-width);
-            width: var(--ticket-width);
-
+            width: 100%;
             height: 1px;
             background-image: repeating-linear-gradient(to right, black 8px, black 12px, transparent 5px, transparent 16px);
             opacity: 0.3;
@@ -305,12 +299,10 @@
 
         #timer {
             background-color: rgb(238, 238, 238);
-            position: absolute;
             bottom: 0px;
             /* overflow: hidden; */
             width: 100%;
             text-align: center;
-            font-size: small;
             padding: 5px;
             opacity: 0.6;
         }
@@ -331,7 +323,8 @@
             </nav>
             <div id="ticket" onclick="fullScreen()">
                 <div id="heading">पुणे महानगर परिवहन महामंडळ लि.</div>
-                <div id="pass_details_div">
+
+                <div class="pass_details_div">
                     <div class="pass_details">
                         <p class="sub_headings">Pass Type</p>
                         <p class="bold_details">PMC and PCMC</p>
@@ -343,15 +336,15 @@
                     </div>
                     <div class="pass_details">
                         <p class="sub_headings">Fare</p>
-                        <p class="bold_details">₹50.0</p>
+                        <p class="bold_details">₹70.0</p>
                     </div>
                 </div>
 
 
-                <div id="cuts">
-                    <div id="dot_line"></div>
-                    <div id="left_cut"></div>
-                    <div id="right_cut"></div>
+                <div class="dot_line_div">
+                    <div class="dot_line"></div>
+                    <div class="left_cut"></div>
+                    <div class="right_cut"></div>
                 </div>
 
 
@@ -370,8 +363,8 @@
                     <p>24030128258C3JNV</p>
                 </div>
 
-                <div id="cuts">
-                    <div id="dot_line"></div>
+                <div class="dot_line_div">
+                    <div class="dot_line"></div>
                 </div>
                 <div class="red-stripe">One Day Pass</div>
 
@@ -440,6 +433,7 @@
 
         const ticket_id = urlString.get('id');
         const ticket_time = urlString.get('time');
+        const bg_color = urlString.get('color');
 
         if (ticket_id !== null && ticket_id != '') {
             id_ele.innerText = ticket_id;
